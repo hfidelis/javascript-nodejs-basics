@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(39, 39, 39);
+}
+
+main {
+    padding-inline: 3rem;
+    margin: 3.2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#page-title {
+    color: #fff;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+#page-title span {
+    text-transform: uppercase;
+    color: rgb(201, 9, 201);
+}
+
+ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-content: center;
+    list-style: none;
+    gap: 2rem;
+    width: auto;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: .5rem;
+
+    scale: 98%;
+    transition: .3s ease-in;
+
+    height: 450px;
+    width: 300px;
+    padding: .5rem 1.5rem;
+    border-radius: 15px;
+
+    background-color: rgb(201, 9, 201);
+    box-shadow: 0px 2px 20px 8px rgb(0, 0, 0, 80%);
+}
+
+ul>li:hover {
+    scale: 100%;
+}
+
+.card-title {
+    color: #fff;
+    margin: .5rem 0;
+}
+
+ul>li>img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: .5rem;
+    border-radius: 20px;
+    box-shadow: 0px 2px 20px 8px rgb(0, 0, 0, 40%);
+}
+
+ul>li>p {
+    color: #fff;
+    font-weight: bolder;
+    text-align: justify;
+}
+
+@media screen and (max-width: 1030px) {
+    ul {
+        grid-template-columns: 1fr 1fr;
+    }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Mini SPA</title>
+    <link rel='stylesheet' href='../css/estilo.css'>
+    <style>
+        nav {
+            font-size: 2em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #FFF;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body class="conteudo">
+    <nav>
+        <a href wm-link="series.html" wm-destino=".pagina">Séries</a> |
+        <a href wm-link="linguagens.html" wm-destino=".pagina">Linguagens</a>
+    </nav>
+    <div class="pagina">
+
+    </div>
+    <script>
+        function navegarAjax(url, seletor, push = true) {
+            // Se algum estiver ausente, sair da function
+            if(!url || !seletor) return 
+            // Eelemento para receber conteúdo.
+            const elemento = document.querySelector(seletor)
+
+            fetch(url)
+                .then(resp => resp.text()) // .text() pois são dados em JSON
+                .then(html => {
+                    elemento.innerHTML = html
+                    if(push) {
+                        history.pushState({ seletor }, "Página Ajax", url) // seletor: seletor
+                    }
+                })
+        }
+
+        document.querySelectorAll('[wm-link]').forEach(link => {
+            const url = link.attributes['wm-link'].value // Buscando o valor do LINK, ex: 'series.html', que será o conteúdo
+            const seletorDestino = link.attributes['wm-destino'].value // Buscando o destino do conteúdo.
+
+            link.onclick = e => {
+                e.preventDefault()
+                navegarAjax(url, seletorDestino)
+            }
+        })
+
+        window.onpopstate = e => {
+            if(e.state) {
+                navegarAjax(window.location.href, e.state.seletor, false)
+            }
+        }
+    </script>
+</body>
